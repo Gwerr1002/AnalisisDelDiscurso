@@ -9,8 +9,18 @@ import numpy as np #Manejo de arreglos
 from scipy.io import wavfile #Para leer archivos wav
 
 class MuestraSeñal():
+    """
+        Esta clase muestra una señal, recibe el nombre de un archivo wav para leerlo
+        MuestraSeñal('nombre.wav')
+        
+        Parameters
+        ----------
+        wavname : string
+                  Nombre del archivo wav "ejemplo.wav"
+    """
     
     def __init__(self, wavname):
+        
         self.wavname = wavname
         self.fs, data = wavfile.read(wavname)
         self.ch1 = data[:,0]
@@ -18,9 +28,44 @@ class MuestraSeñal():
         self.t = np.linspace(0,(len(self.ch1)-1)/self.fs,len(self.ch1))
     
     def GeneraWAV(self,name,fs,data):
+        """
+        MuestraSeñal.Generawav(name, fs, data) Gebera un archivo wav, este se genera en la carpeta donde se ejecuta el programa
+        
+        Parameters
+        ----------
+        name : string
+               Nombre del nuevo archivo wav
+               
+        fs   : int
+               Frecuencia de muestreo
+               
+        data : array
+               Contenido que deberá llevar el nuevo archivo wav
+        
+        """
         wavfile.write(name,int(fs), data)
     
     def Show(self, espec = False, canales = False, power = False):
+        """
+            MuestraSeñal.Show(espec, canales, power) muestra las graficas del espectro de la señal, los canales o la potencia de la señal
+            si los parámetros se ingresan como True
+            
+            Parameters
+            ----------
+            espec   : boolean, opcional
+                      Se inicializa como True si se quiere calcular y graficar el espectro de la señal mediante la transformada de fourier con el método FFT
+                      
+            canales : boolean, opcional
+                      Se inicializa como True si se requiere graficar los canales. Dado este caso se realiza un casting en consola preguntando qué canal se requiere
+                      se selecciona
+                      1 Si se requiere el canal 1
+                      2 Si se requiere el canal 2
+                      3 Ambos se grafican
+             
+            power   : boolean, opcional
+                      Se inicializa con true si se requiere calcular y graficar la potencia de la señal. Aunque, no en la forma convencional. La parte negativa se refleja
+                      con el fin de tener un mejor apreciacion de la morfología original en especial de las variaciones tonales (vibraciones por segundo)
+        """
         
         ch1 = self.ch1[::10]
         ch2 = self.ch1[::10]
@@ -46,10 +91,7 @@ class MuestraSeñal():
         
         if power:
             graficas.GrafPotencia()
-        '''
-        data = np.array([[ch1[n], ch2[n]] for n in range(len(ch1))])
-        self.GeneraWAV("Sremuestreada.wav",fs, data.astype(np.int16));
-        '''
+        
 
 if __name__ == "__main__":
     """
