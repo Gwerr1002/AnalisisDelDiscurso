@@ -2,7 +2,7 @@
 """
 Created on Mon Jan 10 09:57:50 2022
 
-@author: gerard
+@author: Ortiz Montufar Gerardo
 """
 from Graficame import Graf #Clase para trabajar la señal
 import numpy as np #Manejo de arreglos
