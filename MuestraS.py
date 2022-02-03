@@ -52,6 +52,11 @@ class MuestraSeñal():
         '''
 
 if __name__ == "__main__":
-    #Aqui va el nombre del archivo wav
+    """
+        Aqui va el nombre del archivo wav
+        Si se requiere ver los canales si el archivo es estereo, dentro de Show colocar canales = True
+        Para ver el espectro espec = True
+        Para mostrar todo la sintaxis sería: Show(power = True, canales = True, espec = True)
+    """
     MuestraSeñal("Para_evitar_achaques_Segment_0.wav").Show(power = True)
     
