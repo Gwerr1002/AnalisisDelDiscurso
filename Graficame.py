@@ -2,7 +2,7 @@
 """
 Created on Mon Jan 10 10:20:26 2022
 
-@author: gerard
+@author: Ortiz Montufar Gerardo
 """
 
 import matplotlib.pyplot as plt #Para graficar
